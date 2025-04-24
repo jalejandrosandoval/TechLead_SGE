@@ -1,3 +1,4 @@
+using TechLead_SGE.Server.Data.DBContext.Common;
 using TechLead_SGE.Server.Utilities.Classes.Swagger.Common;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +15,9 @@ var app = builder.Build();
 
 // SWAGGER CONFIG UI
 builder.Services.ConfigureSwaggerApiUI(config, app);
+
+// EF DBCONTEXT CONFIG IN TIME EXEC
+builder.Services.ConfigureDbContextApi(config);
 
 app.UseAuthentication();
 app.UseAuthorization();

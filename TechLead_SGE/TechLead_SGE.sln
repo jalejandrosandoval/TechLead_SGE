@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechLead_SGE.Server.Utiliti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechLead_SGE.Server.BL", "TechLead_SGE.Server.BL\TechLead_SGE.Server.BL.csproj", "{3D46E7D1-4B61-4244-8A26-ACCA5EC0A8AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechLead_SGE.Server.Data", "TechLead_SGE.Server.Data\TechLead_SGE.Server.Data.csproj", "{8C9BA369-B7BD-4C51-9A31-89E9601AB9A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -34,6 +36,10 @@ Global
 		{3D46E7D1-4B61-4244-8A26-ACCA5EC0A8AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D46E7D1-4B61-4244-8A26-ACCA5EC0A8AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D46E7D1-4B61-4244-8A26-ACCA5EC0A8AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C9BA369-B7BD-4C51-9A31-89E9601AB9A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C9BA369-B7BD-4C51-9A31-89E9601AB9A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C9BA369-B7BD-4C51-9A31-89E9601AB9A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C9BA369-B7BD-4C51-9A31-89E9601AB9A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

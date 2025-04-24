@@ -54,11 +54,11 @@ namespace TechLead_SGE.Server.Controllers
 
                 List<EmployeeDto> Employees = await Init_Config.dataService.GetObjects<EmployeeDto>(Init_Config.ConfigurationsDto, ParamsData);
 
-                return Init_Config.Validations.ValidateListObjResult(Employees, "OK....");
+                return Validations.ValidateListObjResult(Employees, "OK....");
             }
             catch (Exception ex)
             {
-                return Init_Config.Validations.CatchError(ex);
+                return Validations.CatchError(ex);
             }
         }
     }

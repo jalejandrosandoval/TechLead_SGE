@@ -1,19 +1,19 @@
-﻿using TechLead_SGE.Server.BL.DTOS.Config;
+﻿using Microsoft.Extensions.Configuration;
+using TechLead_SGE.Server.BL.DTOS.Config;
 using TechLead_SGE.Server.BL.Repositories.Implements;
 using TechLead_SGE.Server.BL.Services.Implements;
-using TechLead_SGE.Server.Classes.Controllers.Common;
 
-namespace TechLead_SGE.Server.Classes.Config
+namespace TechLead_SGE.Server.BL.Classes.Config
 {
     /// <summary>
     /// Clase que permite inicializar la configuración Inicial de la aplicación.
     /// </summary>
-    internal class InitConfig
+    public class InitConfig
     {
         /// <summary>
         /// Servicio de tipo DataService que permite interactuar con ciertos métodos de este.
         /// </summary>
-        internal readonly DataService dataService = new(new DataRepository());
+        public readonly DataService dataService = new(new DataRepository());
 
         /// <summary>
         /// Servicio de tipo ValoresGlobalesService que permite interactuar con ciertos métodos de este.
@@ -23,12 +23,7 @@ namespace TechLead_SGE.Server.Classes.Config
         /// <summary>
         /// Objeto de tipo ConfigDto.
         /// </summary>
-        internal ConfigDto ConfigurationsDto { get; set; } = new();
-
-        /// <summary>
-        /// Objeto de tipo ValidationsController.
-        /// </summary>
-        internal ValidationsInControllers Validations { get; set; } = new();
+        public ConfigDto ConfigurationsDto { get; set; } = new();
 
         /// <summary>
         /// Constructor de la Clase con Parámetros.

@@ -15,6 +15,7 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\TechLead_SGE.Server.BL\TechLead_SGE.Server.BL.csproj" />
+    <ProjectReference Include="..\TechLead_SGE.Server.Data\TechLead_SGE.Server.Data.csproj" />
     <ProjectReference Include="..\TechLead_SGE.Server.Utilities\TechLead_SGE.Server.Utilities.csproj" />
   </ItemGroup>
 
@@ -22,10 +23,6 @@
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
       <Version>8.*-*</Version>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Classes\Controllers\Custom\" />
   </ItemGroup>
 
 </Project>

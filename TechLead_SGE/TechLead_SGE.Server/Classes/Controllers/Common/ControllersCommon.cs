@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TechLead_SGE.Server.Classes.Config;
+using TechLead_SGE.Server.BL.Classes.Config;
 
 namespace TechLead_SGE.Server.Classes.Controllers.Common
 {
@@ -15,6 +15,11 @@ namespace TechLead_SGE.Server.Classes.Controllers.Common
         /// Objeto de Tipo InitConfig.
         /// </summary>
         internal InitConfig Init_Config { get; set; } = new InitConfig();
+
+        /// <summary>
+        /// Objeto de Tipo ValidationsInControllers.
+        /// </summary>
+        internal ValidationsInControllers Validations { get; set; } = new ();
 
         /// <summary>
         /// Constructor de la Clase con Parámetros.
