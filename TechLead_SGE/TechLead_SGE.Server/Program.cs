@@ -8,6 +8,9 @@ builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 var config = builder.Configuration;
 
+// EF DBCONTEXT CONFIG IN TIME EXEC
+builder.Services.ConfigureDbContextApi(config);
+
 // SWAGGER CONFIG
 builder.Services.ConfigureSwaggerApi(config);
 
@@ -15,9 +18,6 @@ var app = builder.Build();
 
 // SWAGGER CONFIG UI
 builder.Services.ConfigureSwaggerApiUI(config, app);
-
-// EF DBCONTEXT CONFIG IN TIME EXEC
-builder.Services.ConfigureDbContextApi(config);
 
 app.UseAuthentication();
 app.UseAuthorization();
