@@ -1,0 +1,11 @@
+.copyright {
+    position: fixed;
+    text-align: center;
+    font-size: 0.9rem;
+    padding: 10px 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    background-color: #020f1d70;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
