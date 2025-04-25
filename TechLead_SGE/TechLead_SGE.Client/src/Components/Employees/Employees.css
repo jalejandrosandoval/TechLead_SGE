@@ -2,3 +2,15 @@
     background-color: transparent;
     padding: 20px
 }
+
+.TitleCenter {
+    text-align: center;
+    height: 100%;
+}
+
+.content-container-emp {
+    display: flex;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
