@@ -16,6 +16,7 @@
     </ProjectReference>
     <ProjectReference Include="..\TechLead_SGE.Server.BL\TechLead_SGE.Server.BL.csproj" />
     <ProjectReference Include="..\TechLead_SGE.Server.Data\TechLead_SGE.Server.Data.csproj" />
+    <ProjectReference Include="..\TechLead_SGE.Server.Domain\TechLead_SGE.Server.Domain.csproj" />
     <ProjectReference Include="..\TechLead_SGE.Server.Utilities\TechLead_SGE.Server.Utilities.csproj" />
   </ItemGroup>
 

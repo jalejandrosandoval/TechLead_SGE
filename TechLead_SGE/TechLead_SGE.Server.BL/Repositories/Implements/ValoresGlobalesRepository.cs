@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
-using TechLead_SGE.Server.BL.DTOS.Config;
 using TechLead_SGE.Server.BL.Repositories.Interfaces;
+using TechLead_SGE.Server.Domain.DTOS.Config;
 
 namespace TechLead_SGE.Server.BL.Repositories.Implements
 {

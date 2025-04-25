@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
-using TechLead_SGE.Server.BL.DTOS.Config;
 using TechLead_SGE.Server.BL.Repositories.Implements;
 using TechLead_SGE.Server.BL.Services.Implements;
+using TechLead_SGE.Server.Domain.DTOS.Config;
 
 namespace TechLead_SGE.Server.BL.Classes.Config
 {
@@ -18,7 +18,7 @@ namespace TechLead_SGE.Server.BL.Classes.Config
         /// <summary>
         /// Servicio de tipo ValoresGlobalesService que permite interactuar con ciertos métodos de este.
         /// </summary>
-        private readonly ValoresGlobalesService valoresGlobalesService = new(new ValoresGlobalesRepository());
+        public readonly ValoresGlobalesService valoresGlobalesService = new(new ValoresGlobalesRepository());
 
         /// <summary>
         /// Objeto de tipo ConfigDto.

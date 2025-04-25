@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using TechLead_SGE.Server.BL.DTOS.Controllers;
-using TechLead_SGE.Server.BL.DTOS.Data;
-using TechLead_SGE.Server.Classes.Controllers.Common;
-using static TechLead_SGE.Server.BL.Models.Data.EnumTypesForApi;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using TechLead_SGE.Server.Classes.Logic.Common;
+using TechLead_SGE.Server.Classes.Logic.Custom;
+using TechLead_SGE.Server.Data.DBContext.Common;
 
 namespace TechLead_SGE.Server.Controllers
 {
@@ -10,7 +10,9 @@ namespace TechLead_SGE.Server.Controllers
     /// Controlador que permite el manejo de los diferentes ítems de los Empleados que existen en la BD y que hereda ciertas propiedades de ControllersCommon.
     /// </summary>
     /// <param name="IConfig">Objeto de Tipo IConfiguration.</param>
-    public class EmployeeController(IConfiguration IConfig) : ControllersCommon(IConfig)
+    /// <param name="Context">Objeto de Tipo AppDbContext.</param>
+    /// <param name="Mapper">Objeto de Tipo IMapper.</param>
+    public class EmployeeController(IConfiguration IConfig, AppDbContext Context, IMapper Mapper) : ControllersCommon(IConfig, Context, Mapper)
     {
         /// <summary>
         /// Endpoint que permite obtener un listado de los Empleados.
@@ -20,7 +22,7 @@ namespace TechLead_SGE.Server.Controllers
         /// 
         /// Ejemplo:
         ///
-        ///     GET GetEmployees/
+        ///     GET Employees/
         ///     [
         ///         {
         ///             "idEmployee": 1234,
@@ -41,25 +43,39 @@ namespace TechLead_SGE.Server.Controllers
         /// <response code="404"> Not Found: No se encuentra ningún Empleado Registrado o Activo.</response>
         /// <response code="500"> Internal Server Error: Error NO controlado.</response>
         [HttpGet]
-        [Route("GetEmployees/")]
-        public async Task<ActionResult> GetEmployees()
-        {
-            try
-            {
-                ParamsDataDto ParamsData = new()
-                {
-                    ActionsName = EnumActions.EmployeeActions,
-                    ActionDetails = EnumActionsDetails.GetEmployees
-                };
+        [Route("Employees/")]
+        public async Task<ActionResult> Employees() =>
+            await EmployeeLogic.GetEmployeesParams(Init_Config, Validations, Dependencies);
 
-                List<EmployeeDto> Employees = await Init_Config.dataService.GetObjects<EmployeeDto>(Init_Config.ConfigurationsDto, ParamsData);
-
-                return Validations.ValidateListObjResult(Employees, "OK....");
-            }
-            catch (Exception ex)
-            {
-                return Validations.CatchError(ex);
-            }
-        }
+        /// <summary>
+        /// Endpoint que permite obtener el detalle de los Empleados de acuerdo a su ID.
+        /// </summary>
+        /// <remarks>
+        /// Endpoint que permite obtener el detalle de un empleado registrado de acuerdo a su ID.
+        /// 
+        /// Ejemplo:
+        ///
+        ///     GET Employees/{ID}
+        ///     {
+        ///         "idEmployee": 1234,
+        ///         "name": "Nombre del Empleado",
+        ///         "position": "Posición o Cargo",
+        ///         "department": "Departamento o Área",
+        ///         "salary": 1.2345,
+        ///         "hiringDate": "Fecha de Contratación",
+        ///         "isActive": "Estado del Empleado"
+        ///     }
+        /// 
+        /// </remarks>
+        /// <returns>Task.</returns>
+        /// <response code="200"> OK: Se encontró el detaller del Empleados.</response>
+        /// <response code="400"> BadRequest: El Servidor NO puede procesar la petición, por favor verificar la información suministrada.</response>
+        /// <response code="401"> Unauthorized: No se permite ejecutar la operación, NO Autorizado.</response>
+        /// <response code="404"> Not Found: No se encuentra ningún Empleado Registrado o Activo.</response>
+        /// <response code="500"> Internal Server Error: Error NO controlado.</response>
+        [HttpGet]
+        [Route("Employees/{ID}")]
+        public async Task<ActionResult> Employees(Guid ID) =>
+            await EmployeeLogic.GetEmployeesParams(Init_Config, Validations, Dependencies, ID);
     }
 }

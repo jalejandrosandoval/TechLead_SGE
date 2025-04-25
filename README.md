@@ -12,8 +12,16 @@ Proyecto prueba de desarrollo: Creación de una API de tipo Rest en Net 8 consum
 └─ TechLead_SGE
     ├─ TechLead_SGE.Client
     │   ├─ public
+    │   │   └─ assets
+    │   │      ├─ backgrounds
+    │   │      ├─ icons
+    │   │      └─ logos
     │   └─ src
-    │       └─ assets
+    │       ├─ Components
+    │       │  ├─ Empployees 
+    │       │  ├─ Home
+    │       │  └─ Shared
+    │       └─ Layouts
     ├─ TechLead_SGE.Server
     │  ├─ Classes
     │  │  ├─ Config
@@ -23,6 +31,8 @@ Proyecto prueba de desarrollo: Creación de una API de tipo Rest en Net 8 consum
     │  ├─ Controllers
     │  └─ SRC
     ├─ TechLead_SGE.Server.BL
+    ├─ TechLead_SGE.Server.Data
+    ├─ TechLead_SGE.Server.Domain
     └─ TechLead_SGE.Server.Utilities
 ```
 
@@ -32,7 +42,9 @@ Cada una de estas carpetas principales corresponde a proyectos separados donde s
 
 Se debe tener en cuenta que para arrancar los proyectos se deben tener previamente instaladas algunas tecnologías como lo son:
 
-- NodeJS.
-- React.
+- NodeJS V22.15.0.
+- NPM V11.3.0.
+- React 19.00.
 - Net 8.
-- SQL SERVER - SSMS.
+- EF 9.0.4.
+- SQL SERVER - SSMS 18.

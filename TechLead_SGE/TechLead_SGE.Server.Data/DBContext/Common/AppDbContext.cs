@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using TechLead_SGE.Server.BL.Entities.Controllers;
+using TechLead_SGE.Server.Domain.Entities.Controllers;
+using TechLead_SGE.Server.Domain.Interfaces.Data;
 
 namespace TechLead_SGE.Server.Data.DBContext.Common
 {
@@ -9,7 +10,7 @@ namespace TechLead_SGE.Server.Data.DBContext.Common
     /// Constructor que pasa las opciones de configuración al DbContext base.
     /// </summary>
     /// <param name="DBOptions">Opciones de configuración para el contexto de base de datos.</param>
-    public class AppDbContext(DbContextOptions<AppDbContext> DBOptions) : DbContext(DBOptions)
+    public class AppDbContext(DbContextOptions<AppDbContext> DBOptions) : DbContext(DBOptions), IAppDbContext
     {
         /// <summary>
         /// Representa la tabla de empleados en la base de datos.
@@ -33,6 +34,16 @@ namespace TechLead_SGE.Server.Data.DBContext.Common
                         .Property(e => e.IsActive)
                         .IsRequired()
                         .HasDefaultValue(true);
+        }
+
+        /// <summary>
+        /// Método que permite realizar un guardadk de forma asincrónica los cambios realizados en el contexto en la base de datos.
+        /// </summary>
+        /// <param name="cancellationToken">Token para cancelar la operación.</param>
+        /// <returns>Un número entero que representa la cantidad de entidades afectadas.</returns>
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
+        {
+            return base.SaveChangesAsync(cancellationToken);
         }
     }
 }

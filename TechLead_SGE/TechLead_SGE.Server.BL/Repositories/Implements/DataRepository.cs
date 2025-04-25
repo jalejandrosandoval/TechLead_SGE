@@ -1,7 +1,7 @@
-﻿using TechLead_SGE.Server.BL.DTOS.Config;
-using TechLead_SGE.Server.BL.DTOS.Data;
-using TechLead_SGE.Server.BL.Classes.Logic.Data.Init;
+﻿using TechLead_SGE.Server.BL.Classes.Data.Init;
 using TechLead_SGE.Server.BL.Repositories.Interfaces;
+using TechLead_SGE.Server.Domain.Contexts.Dependencies;
+using TechLead_SGE.Server.Domain.DTOS.Data;
 
 namespace TechLead_SGE.Server.BL.Repositories.Implements
 {
@@ -14,12 +14,12 @@ namespace TechLead_SGE.Server.BL.Repositories.Implements
         /// Método genérico que permite obtener una Lista de Objetos de Tipo <T> y realizar algunas validaciones.
         /// </summary>
         /// <typeparam name="T">Tipo de Dato.</typeparam>
-        /// <param name="Config">Objeto de tipo ConfigDto.</param>
+        /// <param name="Dependencies">Objeto de tipo IDependenciesContext.</param>
         /// <param name="ParamsData">Objeto de tipo ParamsDataDto.</param>
         /// <returns>Task con una Lista de tipo <T>.</returns>
-        public async Task<List<T>> GetObjects<T>(ConfigDto Config, ParamsDataDto ParamsData)
+        public async Task<List<T>> GetObjects<T>(IDependenciesContext Dependencies, ParamsDataDto ParamsData)
         {
-            InitData initData = new(Config);
+            InitData initData = new(Dependencies);
 
             List<T> result = await initData.GetObjects<T>(ParamsData);
 
@@ -32,12 +32,12 @@ namespace TechLead_SGE.Server.BL.Repositories.Implements
         /// <summary>
         /// Método genérico que permite insertar uno o varios objetos en la BD.
         /// </summary>
-        /// <param name="Config">Objeto de tipo ConfigDto.</param>
+        /// <param name="Dependencies">Objeto de tipo IDependenciesContext.</param>
         /// <param name="ParamsData">Objeto de tipo ParamsDataDto.</param>
         /// <returns>Task con un Booleano.</returns>
-        public async Task<bool> PostObjects(ConfigDto Config, ParamsDataDto ParamsData)
+        public async Task<bool> PostObjects(IDependenciesContext Dependencies, ParamsDataDto ParamsData)
         {
-            InitData initData = new(Config);
+            InitData initData = new(Dependencies);
 
             bool result = await initData.PostObjects(ParamsData);
 
