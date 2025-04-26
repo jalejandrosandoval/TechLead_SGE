@@ -1,5 +1,6 @@
 using TechLead_SGE.Server.BL.Classes.Mapper;
 using TechLead_SGE.Server.Data.DBContext.Common;
+using TechLead_SGE.Server.Utilities.Classes.Cors.Common;
 using TechLead_SGE.Server.Utilities.Classes.Mapper.Common;
 using TechLead_SGE.Server.Utilities.Classes.Swagger.Common;
 
@@ -19,7 +20,13 @@ builder.Services.ConfigureMapper(typeof(AutoMapperSettings));
 // SWAGGER CONFIG
 builder.Services.ConfigureSwaggerApi(config);
 
+// CORS CONFIG
+builder.Services.ConfigureCorsApi();
+
 var app = builder.Build();
+
+// USECORS CONFIG
+app.ConfigureUseCorsApi();
 
 // SWAGGER CONFIG UI
 builder.Services.ConfigureSwaggerApiUI(config, app);
