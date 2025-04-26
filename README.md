@@ -44,6 +44,7 @@ Proyecto prueba de desarrollo: Creación de una API de tipo Rest en Net 8 consum
     │  ├─ DBContext
     │  └─ Migrations
     ├─ TechLead_SGE.Server.Domain
+    ├─ TechLead_SGE.Server.UnitTest
     │  ├─ Contexts
     │  ├─ DTOS
     │  ├─ Interfaces
@@ -65,6 +66,8 @@ La distribución se realizó de la siguiente forma:
     - ./TechLead_SGE.Server.Data
     - ./TechLead_SGE.Server.Domain
     - ./TechLead_SGE.Server.Utilities
+* Pruebas Unitarias:
+    - ./TechLead_SGE.Server.UnitTest
 
 ## Inicialización de los proyectos
 
@@ -88,3 +91,10 @@ A continuación se presenta el diseño del FrontEnd del Proyecto.
 A continuación se presenta la imagen dela documentación de la API del BackEnd.
 
 ![](./BackEnd.png)
+
+## Pruebas Unitarias
+
+### BACK-END
+A continuación se presenta la imagen de las pruebas unitarias realizadas a los endpoints de la API.
+
+![](./UnitTest_BackEnd.png)

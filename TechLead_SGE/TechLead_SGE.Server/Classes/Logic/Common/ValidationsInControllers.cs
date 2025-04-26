@@ -7,7 +7,7 @@ namespace TechLead_SGE.Server.Classes.Logic.Common
     /// <summary>
     /// Clase de Lógica que permite realizar las validaciones de los diferentes objetos de los Controladores.
     /// </summary>
-    internal class ValidationsInControllers : ControllerBase
+    public class ValidationsInControllers : ControllerBase
     {
         /// <summary>
         /// Método que permite validar si la respuesta de un un objeto es nulo o vacío.

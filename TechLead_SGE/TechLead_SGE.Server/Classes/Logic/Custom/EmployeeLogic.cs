@@ -12,7 +12,7 @@ namespace TechLead_SGE.Server.Classes.Logic.Custom
     /// <summary>
     /// Clase que permite dar manejo a la lógica transversal del Controlador de Employees.
     /// </summary>
-    internal static class EmployeeLogic
+    public static class EmployeeLogic
     {
         /// <summary>
         /// Método que permite obtener los empleados de acuerdo a ciertos parámetros.
@@ -22,7 +22,7 @@ namespace TechLead_SGE.Server.Classes.Logic.Custom
         /// <param name="Dependencies">Objeto de Tipo IDependenciesContext.</param>
         /// <param name="EmployeeID">Objeto de Tipo Guid.</param>
         /// <returns></returns>
-        internal static async Task<ActionResult> GetEmployeesParams(InitConfig Init_Config, 
+        public static async Task<ActionResult> GetEmployeesParams(InitConfig Init_Config, 
             ValidationsInControllers Validations, 
             IDependenciesContext Dependencies, 
             Guid? EmployeeID = null)
