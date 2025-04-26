@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons/faCheckCircle";
@@ -11,38 +12,53 @@ import { DataTable } from "primereact/datatable";
 import "primereact/resources/primereact.min.css";
 import "primereact/resources/themes/saga-blue/theme.css";
 import { Toast } from "primereact/toast";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import LayoutDefault from "../../Layouts/LayoutDefault";
+import { ApiService } from "../../Services/ApiServices/ApiServiceTechLeadSGE";
 import EmployeeModal from "../Forms/Employees/EmployeeModal";
 import ConfirmationDialog from "../Shared/ConfirmationDialog/ConfirmationDialog";
 import "./Employees.css";
-import { employeesData } from "./EmployeesDataExample";
+import { ProgressSpinner } from "primereact/progressspinner";
 
 const Employees = () => {
-
-    const [employees, setEmployees] = useState(employeesData);
-
+    const [employees, setEmployees] = useState<any[]>([]);
     const [globalFilter, setGlobalFilter] = useState<string | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedEmployee, setSelectedEmployee] = useState<any | null>(null);
     const [confirmationVisible, setConfirmationVisible] = useState(false);
     const [confirmationMessage, setConfirmationMessage] = useState("");
-    const [confirmationAction, setConfirmationAction] = useState<() => void>(() => { });
+    const [confirmationAction, setConfirmationAction] = useState<() => Promise<void>>(async () => {});
+    const [loading, setLoading] = useState(false);
 
     const toast = useRef<Toast>(null);
 
-    const updateEmployeeState = (id: string, updates: Partial<any>) => {
-        setEmployees((prev) =>
-            prev.map((employee) => (employee.id === id ? { ...employee, ...updates } : employee))
-        );
+    const fetchEmployees = async () => {
+        setLoading(true);
+        try {
+            const data = await ApiService.getEmployee();
+            setEmployees([...data]);
+        } catch (error) {
+            toast.current?.show({
+                severity: "error",
+                summary: "Error",
+                detail: "No se pudo cargar la lista de empleados.",
+                life: 3000,
+            });
+        } finally {
+            setLoading(false);
+        }
     };
+
+    useEffect(() => {
+        fetchEmployees();
+    }, []);
 
     const handleAddEmployee = (newEmployee: any) => {
         setEmployees((prev) => [...prev, { ...newEmployee, id: Date.now().toString() }]);
     };
 
-    const handleEditEmployee = (updatedEmployee: any) => {
-        updateEmployeeState(updatedEmployee.id, updatedEmployee);
+    const handleEditEmployee = async (updatedEmployee: any) => {
+        await fetchEmployees();
     };
 
     const openAddEmployeeModal = () => {
@@ -55,33 +71,55 @@ const Employees = () => {
         setIsModalVisible(true);
     };
 
-    const showConfirmationDialog = (message: string, action: () => void) => {
+    const showConfirmationDialog = (message: string, action: () => Promise<void>) => {
         setConfirmationMessage(message);
         setConfirmationVisible(true);
         setConfirmationAction(() => action);
     };
 
-    const deactiveEmployee = (id: string) => {
-        showConfirmationDialog("¿Está seguro de desactivar este empleado?", () => {
-            updateEmployeeState(id, { isActive: false });
-            toast.current?.show({
-                severity: "warn",
-                summary: "Empleado Desactivado",
-                detail: "El empleado ha sido desactivado correctamente.",
-                life: 3000,
-            });
+    const deactiveEmployee = async (id: string) => {
+        showConfirmationDialog("¿Está seguro de desactivar este empleado?", async () => {
+            try {
+                await ApiService.deactivateEmployee(id);
+                setEmployees((prev) => prev.map(emp => emp.id === id ? { ...emp, isActive: false } : emp)); // Actualizamos el estado de la lista
+                toast.current?.show({
+                    severity: "warn",
+                    summary: "Empleado Desactivado",
+                    detail: "El empleado ha sido desactivado correctamente.",
+                    life: 3000,
+                });
+            } catch (error) {
+                toast.current?.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail: "No se pudo desactivar el empleado.",
+                    life: 3000,
+                });
+            }
         });
     };
 
-    const activeEmployee = (id: string) => {
-        showConfirmationDialog("¿Está seguro de activar este empleado?", () => {
-            updateEmployeeState(id, { isActive: true });
-            toast.current?.show({
-                severity: "success",
-                summary: "Empleado Activado",
-                detail: "El empleado ha sido activado correctamente.",
-                life: 3000,
-            });
+    const activeEmployee = async (id: string) => {
+        showConfirmationDialog("¿Está seguro de activar este empleado?", async () => {
+            try {
+                const employee = employees.find((emp) => emp.id === id);
+                if (!employee) return;
+                await ApiService.activateEmployee(employee);
+                setEmployees((prev) => prev.map(emp => emp.id === id ? { ...emp, isActive: true } : emp)); // Actualizamos el estado de la lista
+                toast.current?.show({
+                    severity: "success",
+                    summary: "Empleado Activado",
+                    detail: "El empleado ha sido activado correctamente.",
+                    life: 3000,
+                });
+            } catch (error) {
+                toast.current?.show({
+                    severity: "error",
+                    summary: "Error",
+                    detail: "No se pudo activar el empleado.",
+                    life: 3000,
+                });
+            }
         });
     };
 
@@ -132,15 +170,19 @@ const Employees = () => {
 
     return (
         <LayoutDefault>
-            <Toast ref={toast}/>
+            <Toast ref={toast} />
             <ConfirmationDialog
                 visible={confirmationVisible}
                 message={confirmationMessage}
-                onConfirm={() => {
-                    confirmationAction();
+                onConfirm={async () => {
+                    await confirmationAction();
                     setConfirmationVisible(false);
+                    setConfirmationAction(() => async () => {});
                 }}
-                onCancel={() => setConfirmationVisible(false)}
+                onCancel={() => {
+                    setConfirmationVisible(false);
+                    setConfirmationAction(() => async () => {});
+                }}
             />
             <EmployeeModal
                 visible={isModalVisible}
@@ -156,7 +198,7 @@ const Employees = () => {
             />
             <div className="ContainerEmp">
                 <div className="TitleCenterEmp">
-                    <h2>Empleados...</h2>
+                    <h2>Empleados</h2>
                 </div>
                 <div className="content-container-emp">
                     <div className="content-emp">
@@ -166,14 +208,14 @@ const Employees = () => {
                                     icon={faInfoCircle}
                                     className="icon IconDescriptionTitleEmp"
                                 />
-                                Información de los Empleados...
+                                Información de los Empleados
                             </div>
                             <div className="DescriptionButtons">
                                 <button
                                     className="refresh-button"
-                                    onClick={() => setEmployees([...employeesData])}
+                                    onClick={fetchEmployees}
                                     title="Refrescar"
-                                    >
+                                >
                                     <FontAwesomeIcon icon={faSyncAlt} />
                                 </button>
                                 <button
@@ -186,72 +228,83 @@ const Employees = () => {
                             </div>
                         </div>
                         <div className="content">
-                            <div className="clsContainerTable">
-                                <DataTable
-                                    value={employees}
-                                    paginator={employees.length > 10}
-                                    rows={10}
-                                    header={renderHeader}
-                                    globalFilter={globalFilter}
-                                    scrollable
-                                    scrollHeight="400px"
-                                    tableStyle={{ minWidth: "60rem" }}
-                                    emptyMessage="No se encontraron empleados."
-                                >
-                                    <Column
-                                        body={actionBodyTemplate}
-                                        header=""
-                                        style={{ width: "15%" }}
-                                    ></Column>
-                                    <Column
-                                        field="name"
-                                        header="Nombre"
-                                        style={{ width: "20%" }}
-                                    ></Column>
-                                    <Column
-                                        field="position"
-                                        header="Puesto"
-                                        style={{ width: "20%" }}
-                                    ></Column>
-                                    <Column
-                                        field="department"
-                                        header="Departamento"
-                                        style={{ width: "20%" }}
-                                    ></Column>
-                                    <Column
-                                        field="salary"
-                                        header="Salario"
-                                        body={(rowData) =>
-                                            new Intl.NumberFormat("es-CO", {
-                                                style: "currency",
-                                                currency: "COP",
-                                            }).format(rowData.salary)
-                                        }
-                                        style={{ width: "15%" }}
-                                    ></Column>
-                                    <Column
-                                        field="hiringDate"
-                                        header="Fecha de Contratación"
-                                        body={(rowData) =>
-                                            new Date(rowData.hiringDate).toLocaleDateString()
-                                        }
-                                        style={{ width: "15%" }}
-                                    ></Column>
-                                    <Column
-                                        field="isActive"
-                                        header="Estado"
-                                        body={(rowData) => (
-                                            <span
-                                                className={`status-span ${rowData.isActive ? "active" : "inactive"
-                                                    }`}
-                                            >
-                                                {rowData.isActive ? "Activo" : "Inactivo"}
-                                            </span>
-                                        )}
-                                        style={{ width: "20%" }}
-                                    ></Column>
-                                </DataTable>
-                            </div>
+                            {loading ? (
+                                <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "300px" }}>
+                                    <ProgressSpinner />
+                                </div>
+                            ) : (
+                                <div className="clsContainerTable">
+                                    <DataTable
+                                        value={employees}
+                                        paginator={employees.length > 10}
+                                        rows={10}
+                                        header={renderHeader}
+                                        globalFilter={globalFilter}
+                                        scrollable
+                                        scrollHeight="400px"
+                                        tableStyle={{ minWidth: "60rem" }}
+                                        emptyMessage="No se encontraron empleados..."
+                                    >
+                                        <Column
+                                            body={actionBodyTemplate}
+                                            header="Acciones"
+                                            style={{ width: "15%" }}
+                                        ></Column>
+                                        <Column
+                                            field="name"
+                                            header="Nombre"
+                                            sortable
+                                            style={{ width: "20%" }}
+                                        ></Column>
+                                        <Column
+                                            field="position"
+                                            header="Puesto"
+                                            sortable
+                                            style={{ width: "20%" }}
+                                        ></Column>
+                                        <Column
+                                            field="department"
+                                            header="Departamento"
+                                            sortable
+                                            style={{ width: "20%" }}
+                                        ></Column>
+                                        <Column
+                                            field="salary"
+                                            header="Salario"
+                                            sortable
+                                            body={(rowData) =>
+                                                new Intl.NumberFormat("es-CO", {
+                                                    style: "currency",
+                                                    currency: "COP",
+                                                }).format(rowData.salary)
+                                            }
+                                            style={{ width: "15%" }}
+                                        ></Column>
+                                        <Column
+                                            field="hiringDate"
+                                            header="Fecha de Contratación"
+                                            sortable
+                                            body={(rowData) =>
+                                                new Date(rowData.hiringDate).toLocaleDateString()
+                                            }
+                                            style={{ width: "15%" }}
+                                        ></Column>
+                                        <Column
+                                            field="isActive"
+                                            header="Estado"
+                                            sortable
+                                            body={(rowData) => (
+                                                <span
+                                                    className={`status-span ${rowData.isActive ? "active" : "inactive"}`}
+                                                >
+                                                    {rowData.isActive ? "Activo" : "Inactivo"}
+                                                </span>
+                                            )}
+                                            style={{ width: "20%" }}
+                                        ></Column>
+                                    </DataTable>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
