@@ -1,0 +1,139 @@
+.p-dialog {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1040;
+}
+
+.p-toast {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.p-dialog-header {
+    background-color: VAR(--BGColor_Blue2);
+    color: white;
+    font-size: 16px;
+    padding: 1rem;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.p-dialog-content {
+    padding: 1.5rem;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+/*FORMS SYTLES*/
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.col-6 {
+    flex: 1;
+    max-width: 50%;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.form-group input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    line-height: 1;
+    letter-spacing: 0;
+    width: 100%;
+}
+
+.form-group input:focus {
+    border-color: VAR(--BGColor_Warning);
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+}
+
+/*STYLES BUTTONS*/
+.btn {
+    padding: 0.75rem 1.5rem;
+    font-size: 16px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    line-height: 1;
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.btn-primary {
+    background-color: VAR(--BGColor_Warning);
+}
+
+.btn-primary:hover {
+    background-color: var(--BGColor_White);
+    color: var(--BGColor_Warning);
+    border: 1px solid var(--BGColor_Warning);
+}
+
+.btn-secondary {
+    background-color: VAR(--BGColor_Secondary);
+}
+
+.btn-secondary:hover {
+    background-color: var(--BGColor_White);
+    color: var(--BGColor_Secondary);
+    border: 1px solid var(--BGColor_Secondary);
+}
+
+button.p-dialog-header-icon.p-dialog-header-close.p-link,
+button.p-toast-icon-close-p-link {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.p-toast-icon-close {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    visibility: visible !important;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    color: currentColor;
+    margin-left: auto;
+    padding: 0;
+    background: none !important;
+    border: none !important;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.p-toast-icon-close svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.p-toast-icon-close:hover {
+    color: var(--BGColor_Warning);
+    transform: scale(1.2);
+}

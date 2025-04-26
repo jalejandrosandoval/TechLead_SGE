@@ -1,6 +1,23 @@
 ﻿:root {
     --BGColor_Blue1: #162C40; /*Azul Oscuro*/
     --BGColor_Blue2: #020F1DD6; /*Azul Oscuro*/
+    --BGColor_White: #FFFFFF; /*Blanco*/
+    --BGColor_Primary: #162C40; /*Azul Oscuro*/
+    --BGColor_Secondary: #4C5C72; /*Gris Oscuro*/
+    --BGColor_Warning: #FF9700; /*Amarillo Oscuro*/
+    --BGColor_Danger: #E21B42; /*Rojo Oscuro*/
+    --BGColor_Success: #28A745; /*Verde Oscuro*/
+    --BGColor_Purple: #6F42C1; /*Morado Oscuro*/
+    --BGColor_Orange: #FD7E14; /*Naranga Oscuro*/
+    --BGColor_Info: #808080; /*Gris*/
+    --BGColor_Primary-Light: #E9F0F9; /*Azul Claro*/
+    --BGColor_Primary-Light2: #D2E0F3; /*Azul Claro*/
+    --BGColor_Warning-Light: #FDF0DE; /*Amarillo Claro*/
+    --BGColor_Danger-Light: #F9E1ED; /*Rojo Claro*/
+    --BGColor_Success-Light: #EAFCD9; /*Verde Claro*/
+    --BGColor_Secondary-Light: #EAEAEA; /*Gris Claro*/
+    --BGColor_Purple_Light: #F5F0FF; /*Morado Oscuro*/
+    --BGColor_Orange_Light: #FFF0E3; /*Naranga Oscuro*/
 }
 
 #root {

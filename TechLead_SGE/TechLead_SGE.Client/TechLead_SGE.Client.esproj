@@ -12,6 +12,7 @@
     <Folder Include="src\Components\Employees\" />
     <Folder Include="src\Components\Home\" />
     <Folder Include="src\Components\Shared\Navbar\" />
+    <Folder Include="src\Components\Shared\ConfirmationDialog\" />
     <Folder Include="src\Layouts\" />
   </ItemGroup>
 </Project>

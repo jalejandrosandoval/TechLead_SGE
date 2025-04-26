@@ -1,16 +1,242 @@
-.ContainerEmp {
-    background-color: transparent;
-    padding: 20px
+/*STYLES CONTENT...*/
+.content-header-emp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: relative;
 }
 
-.TitleCenter {
+.ContainerEmp {
+    background-color: transparent;
+}
+
+.TitleCenterEmp {
     text-align: center;
-    height: 100%;
 }
 
 .content-container-emp {
     display: flex;
     background-color: white;
+    height: 85%;
+    min-height: 650px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.DescriptionTitleEmp {
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.IconDescriptionTitleEmp {
+    padding-right: 5px;
+    font-size: 16px;
+    color: var(--BGColor_Secondary-Light);
+}
+
+.DescriptionButtons {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
+    padding: 0;
+    padding-top: 20px;
+}
+
+@media (min-width: 600px) {
+    .content-container-emp {
+        max-width: 90%;
+        min-width: 200px;
+    }
+}
+
+@media (min-width: 800px) {
+    .content-container-emp {
+        max-width: 90%;
+        min-width: 400px;
+    }
+}
+
+@media (min-width: 1000px) {
+    .content-container-emp {
+        max-width: 90%;
+        min-width: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .content-container-emp {
+        max-width: 100%;
+        min-width: 800px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .content-container-emp {
+        max-width: 100%;
+        min-width: 1000px;
+    }
+}
+
+@media (min-width: 1600px) {
+    .content-container-emp {
+        max-width: 100%;
+        min-width: 1200px;
+    }
+}
+
+@media (min-width: 1800px) {
+    .content-container-emp {
+        max-width: 100%;
+        min-width: 1400px;
+    }
+}
+
+/*STYLES SEARCH...*/
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-input {
+    padding: 10px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 300px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .search-input:focus {
+        border-color: #007ad9;
+        box-shadow: 0 0 5px rgba(0, 122, 217, 0.5);
+        outline: none;
+    }
+
+.search-icon {
+    font-size: 16px;
+    color: #888;
+    margin-right: 8px;
+    position: relative;
+    top: 2px;
+}
+
+/*STYLES TABLES...*/
+.clsContainerTable {
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.p-datatable .p-datatable-header {
+    background: none;
+    padding: 0px;
+}
+
+.status-span {
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+}
+
+    .status-span.active {
+        background-color: var(--BGColor_Success);
+        color: var(--BGColor_White);
+    }
+
+    .status-span.inactive {
+        background-color: var(--BGColor_Danger);
+        color: var(--BGColor_White);
+    }
+
+.p-datatable .p-datatable-tbody > tr > td {
+    padding: 8px 10px;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+    padding: 8px 10px;
+    background-color: transparent;
+}
+
+.p-datatable {
+    font-size: 14px;
+}
+
+.p-paginator {
+    padding: 5px 10px;
+}
+
+.search-container {
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.clsContainerTable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
     width: 100%;
+    height: 100%;
+}
+
+.edit-icon {
+    color: VAR(--BGColor_Warning);
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.deactive-icon {
+    color: VAR(--BGColor_Danger);
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.active-icon {
+    color: VAR(--BGColor_Success);
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+/*SYTLES BUTTONS*/
+.refresh-button,
+.add-employee-button {
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    margin-right: 5px;
+    font-size: 14px;
+    color: VAR(--BGColor_White);
+    background-color: VAR(--BGColor_Primary);
+}
+
+.refresh-button:hover,
+.add-employee-button:hover {
+    background-color: var(--BGColor_White);
+    color: var(--BGColor_Primary);
+    border: 1px solid var(--BGColor_Primary);
 }
