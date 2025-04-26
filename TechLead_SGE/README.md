@@ -12,27 +12,44 @@ Proyecto prueba de desarrollo: Creación de una API de tipo Rest en Net 8 consum
 └─ TechLead_SGE
     ├─ TechLead_SGE.Client
     │   ├─ public
+    │   │   └─ assets
+    │   │      ├─ backgrounds
+    │   │      ├─ icons
+    │   │      └─ logos
     │   └─ src
-    │       └─ assets
+    │       ├─ Components
+    │       │  ├─ Employees 
+    │       │  ├─ Forms 
+    │       │  ├─ Home
+    │       │  └─ Shared
+    │       ├─ Interfaces
+    │       ├─ Layouts
+    │       ├─ Models
+    │       └─ Services
     ├─ TechLead_SGE.Server
     │  ├─ Classes
-    │  │  ├─ Config
-    │  │  └─ Controllers
+    │  │  └─ Logic
     │  │      ├─ Common
     │  │      └─ Custom
-    │  ├─ Controllers
-    │  └─ SRC
+    │  └─ Controllers
     ├─ TechLead_SGE.Server.BL
+    │  ├─ Classes
+    │  ├─ Repositories
+    │  │  ├─ Implements
+    │  │  └─ Interfaces
+    │  └─ Services
+    │     ├─ Implements
+    │     └─ Interfaces
+    ├─ TechLead_SGE.Server.Data
+    │  ├─ DBContext
+    │  └─ Migrations
+    ├─ TechLead_SGE.Server.Domain
+    ├─ TechLead_SGE.Server.UnitTest
+    │  ├─ Contexts
+    │  ├─ DTOS
+    │  ├─ Interfaces
+    │  └─ Models
     └─ TechLead_SGE.Server.Utilities
+       ├─ Classes
+       └─ Models
 ```
-
-Cada una de estas carpetas principales corresponde a proyectos separados donde se encuentra segmentado por una modularización. De igual manera, en cada ruta se encuentra una breve explicación.
-
-## Inicialización de los proyectos
-
-Se debe tener en cuenta que para arrancar los proyectos se deben tener previamente instaladas algunas tecnologías como lo son:
-
-- NodeJS.
-- React.
-- Net 8.
-- SQL SERVER - SSMS.

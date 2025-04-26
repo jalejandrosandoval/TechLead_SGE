@@ -81,7 +81,7 @@ const Employees = () => {
         showConfirmationDialog("¿Está seguro de desactivar este empleado?", async () => {
             try {
                 await ApiService.deactivateEmployee(id);
-                setEmployees((prev) => prev.map(emp => emp.id === id ? { ...emp, isActive: false } : emp)); // Actualizamos el estado de la lista
+                setEmployees((prev) => prev.map(emp => emp.id === id ? { ...emp, isActive: false } : emp));
                 toast.current?.show({
                     severity: "warn",
                     summary: "Empleado Desactivado",
@@ -105,7 +105,7 @@ const Employees = () => {
                 const employee = employees.find((emp) => emp.id === id);
                 if (!employee) return;
                 await ApiService.activateEmployee(employee);
-                setEmployees((prev) => prev.map(emp => emp.id === id ? { ...emp, isActive: true } : emp)); // Actualizamos el estado de la lista
+                setEmployees((prev) => prev.map(emp => emp.id === id ? { ...emp, isActive: true } : emp));
                 toast.current?.show({
                     severity: "success",
                     summary: "Empleado Activado",
