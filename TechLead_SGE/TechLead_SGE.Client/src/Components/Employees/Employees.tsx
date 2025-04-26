@@ -156,7 +156,7 @@ const Employees = () => {
             />
             <div className="ContainerEmp">
                 <div className="TitleCenterEmp">
-                    <h2>Empleados</h2>
+                    <h2>Empleados...</h2>
                 </div>
                 <div className="content-container-emp">
                     <div className="content-emp">
@@ -179,6 +179,7 @@ const Employees = () => {
                                 <button
                                     className="add-employee-button"
                                     onClick={openAddEmployeeModal}
+                                    title="Agregar Empleado"
                                 >
                                     Agregar Empleado
                                 </button>
@@ -221,7 +222,10 @@ const Employees = () => {
                                         field="salary"
                                         header="Salario"
                                         body={(rowData) =>
-                                            `$${rowData.salary.toLocaleString()}`
+                                            new Intl.NumberFormat("es-CO", {
+                                                style: "currency",
+                                                currency: "COP",
+                                            }).format(rowData.salary)
                                         }
                                         style={{ width: "15%" }}
                                     ></Column>

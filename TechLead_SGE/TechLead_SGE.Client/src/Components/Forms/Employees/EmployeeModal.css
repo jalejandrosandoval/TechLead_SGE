@@ -1,10 +1,13 @@
+.p-dialog-mask.p-dialog-center.p-component-overlay.p-component-overlay-enter.p-dialog-draggable.p-dialog-resizable {
+    z-index: 900 !important;
+}
+
 .p-dialog {
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    z-index: 1040;
 }
 
 .p-toast {

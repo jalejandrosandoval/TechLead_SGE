@@ -81,7 +81,7 @@ const EmployeeModal: React.FC<EmployeeModalProps> = ({ visible, onHide, onSaveEm
                 breakpoints={{ "960px": "75vw", "640px": "100vw" }}
                 closable
                 className={`${employee ? "edit-mode" : "add-mode"}`}
-                aria-label="Cerrar di�logo"
+                aria-label="Cerrar diálogo"
             >
                 <form id="employee-form" onSubmit={handleSubmit}>
                     <div className="form-row">
@@ -134,7 +134,7 @@ const EmployeeModal: React.FC<EmployeeModalProps> = ({ visible, onHide, onSaveEm
                     </div>
                     <div className="form-row">
                         <div className="form-group col-6">
-                            <label htmlFor="hiringDate">Fecha de Contrataci�n:</label>
+                            <label htmlFor="hiringDate">Fecha de Contratación:</label>
                             <input
                                 type="date"
                                 id="hiringDate"
@@ -149,7 +149,12 @@ const EmployeeModal: React.FC<EmployeeModalProps> = ({ visible, onHide, onSaveEm
             </Dialog>
             <ConfirmationDialog
                 visible={isConfirmationVisible}
-                message="�Est�s seguro de que deseas guardar los cambios?"
+                message={
+                    <div>
+                        <h3>Confirmación</h3>
+                        <p>¿Estás seguro de que deseas guardar los cambios?</p>
+                    </div>
+                }
                 onConfirm={handleConfirmSave}
                 onCancel={() => setIsConfirmationVisible(false)}
             />

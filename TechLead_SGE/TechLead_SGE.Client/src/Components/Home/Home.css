@@ -1,4 +1,7 @@
 .ContainerHome {
     background-color: transparent;
-    padding: 20px;
+}
+
+.TitleCenterHome {
+    text-align: center;
 }
