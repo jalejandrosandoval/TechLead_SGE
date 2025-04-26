@@ -52,6 +52,56 @@ namespace TechLead_SGE.Server.Data.DBContext.Common
                     new EmployeeEntitie
                     {
                         Id = Guid.NewGuid(),
+                        Name = "Sofía Martínez",
+                        Position = "Gerente de Proyectos",
+                        Department = "Gestión",
+                        Salary = 8500000,
+                        HiringDate = DateTime.Now.AddDays(-new Random().Next(60, 730)),
+                        IsActive = true
+                    },
+                    new EmployeeEntitie
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Carlos Gómez",
+                        Position = "Administrador de Base de Datos",
+                        Department = "Infraestructura",
+                        Salary = 7000000,
+                        HiringDate = DateTime.Now.AddDays(-new Random().Next(90, 365)),
+                        IsActive = true
+                    },
+                    new EmployeeEntitie
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Mariana López",
+                        Position = "Especialista en Seguridad",
+                        Department = "Seguridad",
+                        Salary = 6800000,
+                        HiringDate = DateTime.Now.AddDays(-new Random().Next(30, 300)),
+                        IsActive = true
+                    },
+                    new EmployeeEntitie
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Andrés Torres",
+                        Position = "Desarrollador Frontend",
+                        Department = "Tecnología",
+                        Salary = 5200000,
+                        HiringDate = DateTime.Now.AddDays(-new Random().Next(15, 400)),
+                        IsActive = true
+                    },
+                    new EmployeeEntitie
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Valeria Ríos",
+                        Position = "Especialista en Marketing Digital",
+                        Department = "Marketing",
+                        Salary = 4600000,
+                        HiringDate = DateTime.Now.AddDays(-new Random().Next(100, 500)),
+                        IsActive = false
+                    },
+                    new EmployeeEntitie
+                    {
+                        Id = Guid.NewGuid(),
                         Name = "Camila Herrera",
                         Position = "Desarrolladora Backend",
                         Department = "Tecnología",
@@ -88,6 +138,26 @@ namespace TechLead_SGE.Server.Data.DBContext.Common
                         Salary = 4200000,
                         HiringDate = DateTime.Now.AddDays(-new Random().Next(145, 730)),
                         IsActive = false
+                    },
+                    new EmployeeEntitie
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Lucía Fernández",
+                        Position = "Especialista en Recursos Humanos",
+                        Department = "Recursos Humanos",
+                        Salary = 5800000,
+                        HiringDate = DateTime.Now.AddDays(-new Random().Next(50, 600)),
+                        IsActive = true
+                    },
+                    new EmployeeEntitie
+                    {
+                        Id = Guid.NewGuid(),
+                        Name = "Miguel Ángel Pérez",
+                        Position = "Arquitecto de Software",
+                        Department = "Tecnología",
+                        Salary = 9000000,
+                        HiringDate = DateTime.Now.AddDays(-new Random().Next(100, 800)),
+                        IsActive = true
                     }
                 );
 
