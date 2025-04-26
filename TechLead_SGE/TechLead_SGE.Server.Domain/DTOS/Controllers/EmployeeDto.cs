@@ -7,6 +7,6 @@ namespace TechLead_SGE.Server.Domain.DTOS.Controllers
     /// </summary>
     public class EmployeeDto : EmployeeEntitie
     {
-
+        
     }
 }

@@ -24,7 +24,7 @@ namespace TechLead_SGE.Server.Domain.Entities.Controllers
         /// Nombre completo del empleado.
         /// </summary>
         [Required(ErrorMessage = "El nombre es obligatorio.")]
-        [StringLength(100, ErrorMessage = "El nombre no puede superar los 100 caracteres.")]
+        [StringLength(100, MinimumLength = 8, ErrorMessage = "Verifique el número de caracteres, mínimo 8, máximo 100 caracteres...")]
         [DefaultValue("Nombre del Empleado")]
         [DataMember]
         public string Name { get; set; } = string.Empty;
@@ -33,7 +33,7 @@ namespace TechLead_SGE.Server.Domain.Entities.Controllers
         /// Puesto o cargo que ocupa el empleado en la empresa.
         /// </summary>
         [Required(ErrorMessage = "El puesto es obligatorio.")]
-        [StringLength(50, ErrorMessage = "El puesto no puede superar los 50 caracteres.")]
+        [StringLength(50, MinimumLength = 3, ErrorMessage = "Verifique el número de caracteres, mínimo 3, máximo 50 caracteres...")]
         [DefaultValue("Puesto")]
         [DataMember] 
         public string Position { get; set; } = string.Empty;
@@ -42,7 +42,7 @@ namespace TechLead_SGE.Server.Domain.Entities.Controllers
         /// Departamento al que pertenece el empleado.
         /// </summary>
         [Required(ErrorMessage = "El departamento es obligatorio.")]
-        [StringLength(50, ErrorMessage = "El departamento no puede superar los 50 caracteres.")]
+        [StringLength(50, MinimumLength = 5, ErrorMessage = "Verifique el número de caracteres, mínimo 5, máximo 50 caracteres...")]
         [DefaultValue("Deparamento")]
         [DataMember] 
         public string Department { get; set; } = string.Empty;
@@ -61,6 +61,7 @@ namespace TechLead_SGE.Server.Domain.Entities.Controllers
         /// </summary>
         [Required(ErrorMessage = "La fecha de contratación es obligatoria.")]
         [DefaultValue(typeof(DateTime), "2025-04-01")]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataMember]
         public DateTime HiringDate { get; set; }
 

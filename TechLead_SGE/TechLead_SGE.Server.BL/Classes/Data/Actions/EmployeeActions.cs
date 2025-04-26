@@ -66,14 +66,15 @@ namespace TechLead_SGE.Server.BL.Classes.Data.Actions
         /// <summary>
         /// Método que permite insertar la información de un Empleado.
         /// </summary>
+        /// <param name="EmployeeID">Objeto de Tipo Guid.</param>
         /// <param name="EmployeeData">Objeto de Tipo EmployeeEntitie.</param>
         /// <returns>Bool.</returns>
         /// <exception cref="ApiException">Obtiene una excepción si el PA falla o retorna algún error.</exception>
-        internal bool PutEmployee(EmployeeEntitie EmployeeData)
+        internal bool PutEmployee(Guid EmployeeID, EmployeeEntitie EmployeeData)
         {
             try
             {
-                EmployeeEntitie Employee = Actions.Dependencies.Context!.Employees.Find(EmployeeData.Id)!;
+                EmployeeEntitie Employee = Actions.Dependencies.Context!.Employees.Find(EmployeeID)!;
 
                 if (Employee! == null)
                     throw new Exception("Empleado no encontrado...");
