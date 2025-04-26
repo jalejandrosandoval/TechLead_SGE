@@ -42,7 +42,7 @@ namespace TechLead_SGE.Server.Domain.Entities.Controllers
         /// Departamento al que pertenece el empleado.
         /// </summary>
         [Required(ErrorMessage = "El departamento es obligatorio.")]
-        [StringLength(50, MinimumLength = 5, ErrorMessage = "Verifique el número de caracteres, mínimo 5, máximo 50 caracteres...")]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Verifique el número de caracteres, mínimo 2, máximo 50 caracteres...")]
         [DefaultValue("Deparamento")]
         [DataMember] 
         public string Department { get; set; } = string.Empty;

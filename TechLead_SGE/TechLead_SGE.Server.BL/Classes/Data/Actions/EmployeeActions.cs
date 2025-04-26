@@ -24,7 +24,7 @@ namespace TechLead_SGE.Server.BL.Classes.Data.Actions
                 List<object> Employees = [];
 
                 if(EmployeeID == null)
-                    Employees = [.. Actions.Dependencies.Context!.Employees];
+                    Employees = [.. Actions.Dependencies.Context!.Employees.OrderBy(emp => emp.Name)];
                 else if(EmployeeID != null)
                     Employees =  [Actions.Dependencies.Context!.Employees.Find(EmployeeID)];
 
@@ -84,6 +84,7 @@ namespace TechLead_SGE.Server.BL.Classes.Data.Actions
                 Employee.Department = EmployeeData.Department;
                 Employee.Salary = EmployeeData.Salary;
                 Employee.HiringDate = EmployeeData.HiringDate;
+                Employee.IsActive = EmployeeData.IsActive;
 
                 Actions.Dependencies.Context.SaveChangesAsync();
 

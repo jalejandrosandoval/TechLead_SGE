@@ -18,25 +18,53 @@ Proyecto prueba de desarrollo: Creación de una API de tipo Rest en Net 8 consum
     │   │      └─ logos
     │   └─ src
     │       ├─ Components
-    │       │  ├─ Empployees 
+    │       │  ├─ Employees 
+    │       │  ├─ Forms 
     │       │  ├─ Home
     │       │  └─ Shared
-    │       └─ Layouts
+    │       ├─ Interfaces
+    │       ├─ Layouts
+    │       ├─ Models
+    │       └─ Services
     ├─ TechLead_SGE.Server
     │  ├─ Classes
-    │  │  ├─ Config
-    │  │  └─ Controllers
+    │  │  └─ Logic
     │  │      ├─ Common
     │  │      └─ Custom
-    │  ├─ Controllers
-    │  └─ SRC
+    │  └─ Controllers
     ├─ TechLead_SGE.Server.BL
+    │  ├─ Classes
+    │  ├─ Repositories
+    │  │  ├─ Implements
+    │  │  └─ Interfaces
+    │  └─ Services
+    │     ├─ Implements
+    │     └─ Interfaces
     ├─ TechLead_SGE.Server.Data
+    │  ├─ DBContext
+    │  └─ Migrations
     ├─ TechLead_SGE.Server.Domain
+    │  ├─ Contexts
+    │  ├─ DTOS
+    │  ├─ Interfaces
+    │  └─ Models
     └─ TechLead_SGE.Server.Utilities
+       ├─ Classes
+       └─ Models
 ```
 
 Cada una de estas carpetas principales corresponde a proyectos separados donde se encuentra segmentado por una modularización. De igual manera, en cada ruta se encuentra una breve explicación.
+
+La distribución se realizó de la siguiente forma:
+
+* FRONT-END: 
+    - ./TechLead_SGE.Client
+* BACK-END: 
+    - ./TechLead_SGE.Server
+    - ./TechLead_SGE.Server.BL
+    - ./TechLead_SGE.Server.Data
+    - ./TechLead_SGE.Server.Domain
+    - ./TechLead_SGE.Server.Utilities
 
 ## Inicialización de los proyectos
 
@@ -48,3 +76,15 @@ Se debe tener en cuenta que para arrancar los proyectos se deben tener previamen
 - Net 8.
 - EF 9.0.4.
 - SQL SERVER - SSMS 18.
+
+## Diseño Proyecto
+
+### FRONT-END
+A continuación se presenta el diseño del FrontEnd del Proyecto.
+
+![](./FrontEnd.png)
+
+### BACK-END
+A continuación se presenta la imagen dela documentación de la API del BackEnd.
+
+![](./BackEnd.png)
