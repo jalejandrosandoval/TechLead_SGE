@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+// DEPENDENCIAS...
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons/faCheckCircle";
 import { faEdit } from "@fortawesome/free-solid-svg-icons/faEdit";
@@ -20,7 +22,12 @@ import ConfirmationDialog from "../Shared/ConfirmationDialog/ConfirmationDialog"
 import "./Employees.css";
 import { ProgressSpinner } from "primereact/progressspinner";
 
+// COMPONENTE PRINCIPAL
+// Este componente es el encargado de mostrar la lista de empleados y permitir la edición y eliminación de los mismos.
+// Utiliza el componente DataTable de PrimeReact para mostrar la lista de empleados y el componente EmployeeModal para agregar o editar empleados.
+// También utiliza el componente ConfirmationDialog para confirmar la eliminación de un empleado.
 const Employees = () => {
+    // ESTADOS
     const [employees, setEmployees] = useState<any[]>([]);
     const [globalFilter, setGlobalFilter] = useState<string | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -30,8 +37,11 @@ const Employees = () => {
     const [confirmationAction, setConfirmationAction] = useState<() => Promise<void>>(async () => {});
     const [loading, setLoading] = useState(false);
 
+    // REF
     const toast = useRef<Toast>(null);
 
+    // FUNCIONES
+    // Esta función se encarga de cargar la lista de empleados desde el servicio ApiService.    
     const fetchEmployees = async () => {
         setLoading(true);
         try {
@@ -49,34 +59,43 @@ const Employees = () => {
         }
     };
 
+    // Esta función se encarga de agregar un nuevo empleado a la lista de empleados.
     useEffect(() => {
         fetchEmployees();
     }, []);
 
+    // Esta función se encarga de editar un empleado existente en la lista de empleados.
     const handleAddEmployee = (newEmployee: any) => {
         setEmployees((prev) => [...prev, { ...newEmployee, id: Date.now().toString() }]);
     };
 
+    // Esta función se encarga de editar un empleado existente en la lista de empleados.
     const handleEditEmployee = async (updatedEmployee: any) => {
         await fetchEmployees();
     };
 
+    // Esta función se encarga de abrir el modal para agregar un nuevo empleado.
     const openAddEmployeeModal = () => {
         setSelectedEmployee(null);
         setIsModalVisible(true);
     };
 
+    // Esta función se encarga de abrir el modal para editar un empleado existente.
     const openEditEmployeeModal = (employee: any) => {
         setSelectedEmployee(employee);
         setIsModalVisible(true);
     };
 
+    // Esta función se encarga de mostrar el modal de confirmación para desactivar o activar un empleado.
+    // Recibe un mensaje y una acción como parámetros.  
     const showConfirmationDialog = (message: string, action: () => Promise<void>) => {
         setConfirmationMessage(message);
         setConfirmationVisible(true);
         setConfirmationAction(() => action);
     };
 
+    // Esta función se encarga de desactivar un empleado existente en la lista de empleados.
+    // Recibe el id del empleado como parámetro.
     const deactiveEmployee = async (id: string) => {
         showConfirmationDialog("¿Está seguro de desactivar este empleado?", async () => {
             try {
@@ -99,6 +118,8 @@ const Employees = () => {
         });
     };
 
+    // Esta función se encarga de activar un empleado existente en la lista de empleados.
+    // Recibe el id del empleado como parámetro.
     const activeEmployee = async (id: string) => {
         showConfirmationDialog("¿Está seguro de activar este empleado?", async () => {
             try {
@@ -123,6 +144,8 @@ const Employees = () => {
         });
     };
 
+    // Esta función se encarga de renderizar el encabezado de la tabla de empleados.
+    // Utiliza el hook useMemo para memorizar el encabezado y evitar que se vuelva a renderizar innecesariamente.
     const renderHeader = useMemo(() => {
         return (
             <div className="table-header search-container">
@@ -139,6 +162,7 @@ const Employees = () => {
         );
     }, []);
 
+    // Esta función se encarga de renderizar las acciones de cada fila de la tabla de empleados.    
     const actionBodyTemplate = useMemo(
         () => (rowData: any) => (
             <>
@@ -168,6 +192,9 @@ const Employees = () => {
         [employees]
     );
 
+    // RENDERIZADO
+    // El componente LayoutDefault es el contenedor principal del componente Employees.
+    // Dentro de este contenedor se encuentran el Toast, el ConfirmationDialog y el EmployeeModal.
     return (
         <LayoutDefault>
             <Toast ref={toast} />

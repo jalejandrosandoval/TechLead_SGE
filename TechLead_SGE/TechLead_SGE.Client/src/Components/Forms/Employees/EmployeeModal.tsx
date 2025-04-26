@@ -1,17 +1,22 @@
+// ESLINT-DISABLE
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable react-refresh/only-export-components */
+
+// DEPENCIENCIAS
 import { Dialog } from "primereact/dialog";
 import { Toast } from "primereact/toast";
-import { useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { IEmployeeModalProps } from "../../../Interfaces/IEmployee";
 import { Employee } from "../../../Models/Employee";
 import { ApiService } from "../../../Services/ApiServices/ApiServiceTechLeadSGE";
 import ConfirmationDialog from "../../Shared/ConfirmationDialog/ConfirmationDialog";
 import "./EmployeeModal.css";
-import { IEmployeeModalProps } from "../../../Interfaces/IEmployee";
 
+// INTERFACES
 const defaultFormData: Employee = new Employee();
 
+// VALIDACIONES
 export const EmployeeValidation = {
     validateName: (name: string): string | null => {
         if (name.length < 8 || name.length > 100) {
@@ -46,12 +51,15 @@ export const EmployeeValidation = {
     },
 };
 
+// PROPIEDADES DEL COMPONENTE PARA EL MODAL DE EMPLEADOS
 const EmployeeModal: React.FC<IEmployeeModalProps> = ({ visible, onHide, onSaveEmployee, employee }) => {
+    // ESTADOS
     const [formData, setFormData] = useState<Employee>(defaultFormData);
     const [isConfirmationVisible, setIsConfirmationVisible] = useState(false);
     const [formErrors, setFormErrors] = useState<any>({});
     const toast = useRef<Toast>(null);
 
+    // EFECTOS
     useEffect(() => {
         if (employee) {
             setFormData((prev) => ({
@@ -66,6 +74,8 @@ const EmployeeModal: React.FC<IEmployeeModalProps> = ({ visible, onHide, onSaveE
         }
     }, [employee]);    
 
+    // FORMATEO DE FECHA A YYYY-MM-DD
+    // Esta función convierte una fecha en formato YYYY-MM-DD a un objeto Date de JavaScript.   
     const formatDateToYYYYMMDD = (date: string | Date): string => {
         const parsedDate = new Date(date);
         if (isNaN(parsedDate.getTime())) {
@@ -77,6 +87,8 @@ const EmployeeModal: React.FC<IEmployeeModalProps> = ({ visible, onHide, onSaveE
         return `${year}-${month}-${day}`;
     };
 
+    // MANEJO DEL CAMBIO DE ENTRADA
+    // Esta función se encarga de manejar los cambios en los campos de entrada del formulario.
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { id, value } = e.target;
         setFormData((prev) => ({
@@ -85,6 +97,8 @@ const EmployeeModal: React.FC<IEmployeeModalProps> = ({ visible, onHide, onSaveE
         }));
     };
 
+    // VALIDACION DEL FORMULARIO
+    // Esta función valida los datos del formulario utilizando las funciones de validación definidas anteriormente.
     const validateForm = (): boolean => {
         const errors: any = {};
         errors.name = EmployeeValidation.validateName(formData.name);
@@ -95,17 +109,17 @@ const EmployeeModal: React.FC<IEmployeeModalProps> = ({ visible, onHide, onSaveE
 
         setFormErrors(errors);
 
-        // Retorna verdadero si no hay errores
         return Object.values(errors).every((error) => error === null);
     };
 
+    // CONFIRMACION DE CAMBIOS
+    // Esta función se encarga de mostrar un cuadro de diálogo de confirmación antes de guardar los cambios.
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        if (!validateForm()) return; // Si hay errores, no continúa
+        if (!validateForm()) return; 
 
         const dataToSend = { ...formData };
 
-        // Eliminar la propiedad 'id' si estamos creando un nuevo empleado
         if (!employee) {
             delete dataToSend.id;
         }
@@ -141,7 +155,7 @@ const EmployeeModal: React.FC<IEmployeeModalProps> = ({ visible, onHide, onSaveE
         }
     };
 
-
+    // MANEJO DEL CIERRE DEL MODAL
     const renderFooter = useMemo(
         () => (
             <div className="dialog-footer">
@@ -156,6 +170,7 @@ const EmployeeModal: React.FC<IEmployeeModalProps> = ({ visible, onHide, onSaveE
         [onHide]
     );
 
+    // RENDERIZADO DEL MODAL
     return (
         <>
             <Toast ref={toast} />

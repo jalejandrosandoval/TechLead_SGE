@@ -1,8 +1,12 @@
+// DEPENDENCIES
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
+// COMPONENTE NAVEGACIÓN
+// Este componente representa la barra de navegación de la aplicación. Contiene un logotipo y enlaces a diferentes secciones de la aplicación, como "Inicio" y "Empleados".
+// El logotipo se muestra como una imagen y los enlaces se representan como una lista desordenada.
 const Navbar = () => {
     return (
         <nav className="navbar">
@@ -27,4 +31,6 @@ const Navbar = () => {
     );
 };
 
+// Este componente representa la barra de navegación de la aplicación. Contiene un logotipo y enlaces a diferentes secciones de la aplicación, como "Inicio" y "Empleados".
+// El logotipo se muestra como una imagen y los enlaces se representan como una lista desordenada.
 export default Navbar;

@@ -1,3 +1,4 @@
+// Descripción: Datos de ejemplo para la tabla de empleados.
 export const employeesData = [
     {
         id: "1",
