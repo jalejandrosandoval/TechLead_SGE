@@ -57,6 +57,11 @@ namespace TechLead_SGE.Server.Classes.Logic.Custom
             }
         }
 
+        /// <summary>
+        /// Método que permite validar si el GUID proporcionado es nulo o no.
+        /// </summary>
+        /// <param name="EmployeeID"></param>
+        /// <returns></returns>
         private static bool ValidationGUID(Guid? EmployeeID = null)
         {
             bool IsValid = false;
@@ -74,6 +79,7 @@ namespace TechLead_SGE.Server.Classes.Logic.Custom
         /// <param name="Init_Config">Objeto de Tipo InitConfig.</param>
         /// <param name="Validations">Objeto de Tipo ValidationsInControllers.</param>
         /// <param name="Dependencies">Objeto de Tipo IDependenciesContext.</param>
+        /// <param name="TypeOperation">Objeto de Tipo EnumTypeOperation.</param>
         /// <param name="EmployeeObj">Objetode Tipo EmployeeObjModel.</param>
         /// <param name="EmployeeID">Objeto de Tipo Guid.</param>
         /// <returns></returns>
